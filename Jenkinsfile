@@ -28,10 +28,10 @@ pipeline {
         stage('Publish Test Results') {
             steps {
                 publishHTML(target: [
-                    allowMissing: false,
+                    allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: './src/reports',
+                    reportDir: 'src/reports',
                     reportFiles: 'index.html',
                     reportName: 'Playwright Test Report'
                 ])
