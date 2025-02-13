@@ -31,7 +31,7 @@ pipeline {
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: 'src/reports/',
+                    reportDir: 'src/reports/html',
                     reportFiles: 'index.html',
                     reportName: 'Playwright Test Report'
                 ])
@@ -41,7 +41,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'src/reports/**', fingerprint: true
+            archiveArtifacts artifacts: 'src/reports/html/**', fingerprint: true
         }
         failure {
             echo '❌ Las pruebas han fallado. Revisa los logs.'
