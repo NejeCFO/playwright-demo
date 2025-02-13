@@ -14,14 +14,14 @@ pipeline {
 
         stage('Setup Node.js & Dependencies') {
             steps {
-                sh 'npm install'
-                sh 'npx playwright install --with-deps'
+                bat 'npm install'
+                bat 'npx playwright install --with-deps'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                sh 'npx playwright test'
+                bat 'npx playwright test'
             }
         }
 
@@ -44,10 +44,10 @@ pipeline {
             archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
         }
         failure {
-            echo 'Las pruebas han fallado. Revisa los logs.'
+            echo '❌ Las pruebas han fallado. Revisa los logs.'
         }
         success {
-            echo 'Todas las pruebas pasaron exitosamente!'
+            echo '✅ Todas las pruebas pasaron exitosamente!'
         }
     }
 }
