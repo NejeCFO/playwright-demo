@@ -18,6 +18,7 @@
   "homepage": "https://github.com/NejeCFO/playwright-demo#readme",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.2"
+    "@types/node": "^22.13.2",
+    "dotenv": "^16.4.7"
   }
 }
