@@ -23,7 +23,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html', {outputFolder: './src/reports'}], 
+    ['list', {printSteps: true}],
+    ['html', {outputFolder: './src/reports', open: 'never'}], 
     ['json', { outputFile: './src/reports/report.json' }]],
   timeout: 120_000,
   expect: {

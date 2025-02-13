@@ -15,7 +15,7 @@ pipeline {
         stage('Setup Node.js & Dependencies') {
             steps {
                 bat 'npm install'
-                bat 'npx playwright install --with-deps'
+                bat 'npx playwright install chromium'
             }
         }
 
