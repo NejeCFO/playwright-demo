@@ -1,0 +1,141 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\CFO Tech\\Documents\\GitHub\\playwright-demo\\playwright.config.ts",
+    "rootDir": "C:/Users/CFO Tech/Documents/GitHub/playwright-demo/src/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "./src/reports"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./src/reports/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/CFO Tech/Documents/GitHub/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/CFO Tech/Documents/GitHub/playwright-demo/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.50.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "asm.demo.test.ts",
+      "file": "asm.demo.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Regresión de ASM - Alta de Servicios Móviles",
+          "file": "asm.demo.test.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "ASM - Portación DNI",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 75358,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Login en ASM",
+                          "duration": 16863
+                        },
+                        {
+                          "title": "Completar Datos Entidad",
+                          "duration": 11671
+                        },
+                        {
+                          "title": "Completar Datos del cliente",
+                          "duration": 11755
+                        },
+                        {
+                          "title": "Seleccionar oferta comercial",
+                          "duration": 33447
+                        },
+                        {
+                          "title": "Cierro Sesión",
+                          "duration": 1442
+                        }
+                      ],
+                      "startTime": "2025-02-13T16:58:42.284Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "65973cbb943936425a4d-be84a10dbfdba43b6f5e",
+              "file": "asm.demo.test.ts",
+              "line": 10,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-02-13T16:58:41.143Z",
+    "duration": 76722.11,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
