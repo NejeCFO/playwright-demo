@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/NejeCFO/playwright-demo.git'
+                git branch: 'main', credentialsId: 'github-ssh', url: 'https://github.com/NejeCFO/playwright-demo.git'
             }
         }
 
