@@ -41,7 +41,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'index/**', fingerprint: true
+            archiveArtifacts artifacts: 'src/reports/**', fingerprint: true
         }
         failure {
             echo '❌ Las pruebas han fallado. Revisa los logs.'
