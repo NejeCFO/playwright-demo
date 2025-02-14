@@ -54,6 +54,19 @@ test.describe('Regresión de ASM - Alta de Servicios Móviles', () => {
             await expect(page).toHaveURL(/.*login/);
         })
     });
+
+
+    test('Test Case para fallo', async ({ page }) => {
+        const homePage = new HomePage(page);
+
+        await test.step('Login en ASM', async () => {
+            const loginPage = new LoginPage(page);
+            await loginPage.loginWithCredentials();
+            await expect(homePage.titleIsVisible).toBeTruthy();
+            await expect(page).toHaveURL(/.*fail/);
+        });  
+    })
+    
 })
 
 
