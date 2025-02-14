@@ -22,6 +22,7 @@ pipeline {
         stage('Run Playwright Tests') {
             steps {
                 bat 'npx playwright test'
+                bat 'node src/scripts/reportSummary.js'
             }
         }
 
