@@ -22,13 +22,14 @@ pipeline {
         stage('Run Playwright Tests') {
             steps {
                 bat 'npx playwright test'
-                bat 'node src/scripts/reportSummary.js'
+                // bat 'node src/scripts/reportSummary.js'
             }
         }
     }
 
     post {
         always {
+            bat 'node src/scripts/reportSummary.js'
             publishHTML(target: [
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
