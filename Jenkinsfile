@@ -14,15 +14,20 @@ pipeline {
 
         stage('Setup Node.js & Dependencies') {
             steps {
-                bat 'npm install'
-                bat 'npx playwright install chromium'
+                ansiColor('xterm') {
+                    bat 'npm install'
+                    bat 'npx playwright install chromium'
+                }
+                
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                bat 'npx playwright test'
-                // bat 'node src/scripts/reportSummary.js'
+                ansiColor('xterm') {
+                    bat 'npx playwright test'
+                    // bat 'node src/scripts/reportSummary.js'
+                }                                
             }
         }
     }
