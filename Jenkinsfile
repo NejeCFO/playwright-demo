@@ -25,23 +25,18 @@ pipeline {
                 bat 'node src/scripts/reportSummary.js'
             }
         }
-
-        stage('Publish Test Results') {
-            steps {
-                publishHTML(target: [
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'src/reports/html',
-                    reportFiles: 'index.html',
-                    reportName: 'Playwright Test Report'
-                ])
-            }
-        }
     }
 
     post {
         always {
+            publishHTML(target: [
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'src/reports/html',
+                reportFiles: 'index.html',
+                reportName: 'Playwright Test Report'
+            ])
             archiveArtifacts artifacts: 'src/reports/html/**', fingerprint: true
         }
         failure {
