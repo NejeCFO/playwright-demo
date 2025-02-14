@@ -40,9 +40,9 @@ pipeline {
     }
 
     post {
-        // always {
-        //     archiveArtifacts artifacts: 'src/reports/html/**', fingerprint: true
-        // }
+        always {
+            archiveArtifacts artifacts: 'src/reports/html/**', fingerprint: true
+        }
         failure {
             echo '❌ Las pruebas han fallado. Revisa los logs.'
         }
