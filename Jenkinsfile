@@ -38,7 +38,7 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Playwright Test Report'
             ])
-            archiveArtifacts artifacts: 'src/reports/html/**', fingerprint: true
+            archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
         }
         failure {
             echo '❌ Las pruebas han fallado. Revisa los logs.'
