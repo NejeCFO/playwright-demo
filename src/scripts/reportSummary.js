@@ -38,7 +38,8 @@ fs.readFile(reportPath, 'utf8', (err, data) => {
     };
 
     // Imprimir la tabla
-    console.log('Tabla de Resultados:');
+    console.log('----------------------------------------');
+    console.log('Resumen de Casos de Prueba:');
     printTable(report.suites);
 
     // Imprimir el resumen
@@ -46,4 +47,5 @@ fs.readFile(reportPath, 'utf8', (err, data) => {
     console.log(`Total de casos: ${totalCases}`);
     console.log(`Total de casos OK: ${totalOk}`);
     console.log(`Total de casos fallados: ${totalFailed}`);
+    console.log('----------------------------------------');
 });
