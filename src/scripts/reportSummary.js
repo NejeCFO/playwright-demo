@@ -31,7 +31,7 @@ fs.readFile(reportPath, 'utf8', (err, data) => {
                     } else {
                         totalFailed++;
                     }
-                    console.log(`Test Case: ${spec.title}, Resultado: ${result}`);
+                    console.log(`Test Case: ${spec.title} - Resultado: ${result}`);
                 });
             });
         });
