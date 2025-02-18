@@ -19,7 +19,7 @@ export class LoginPage {
     }
 
     async loginWithCredentials() {
-        const username = process.env.USUARIO;
+        const username = process.env.USERNAME;
         const password = process.env.PASSWORD;
   
         if (!username || !password) {
