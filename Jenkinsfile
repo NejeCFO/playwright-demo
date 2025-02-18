@@ -53,5 +53,8 @@ pipeline {
         success {
             echo '✅ Todas las pruebas pasaron exitosamente!'
         }
+        unstable {
+            echo '⚠️ Algunas pruebas han fallado. Revisa los logs.'
+        }
     }
 }
