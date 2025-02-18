@@ -19,8 +19,8 @@ export class LoginPage {
     }
 
     async loginWithCredentials() {
-        const username = process.env.USERNAME;
-        const password = process.env.PASSWORD;
+        const username = process.env.USER_NAME;
+        const password = process.env.USER_PASSWORD;
   
         if (!username || !password) {
             throw new Error('Las variables de entorno USUARIO y PASSWORD deben estar definidas');
