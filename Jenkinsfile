@@ -18,32 +18,34 @@ pipeline {
                     bat 'npm install'
                     bat 'npx playwright install chromium'
                 }
-                
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
                 ansiColor('xterm') {
-                    bat 'npx playwright test'
-                    // bat 'node src/scripts/reportSummary.js'
-                }                                
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        bat 'npx playwright test'
+                    }
+                }
             }
         }
     }
 
     post {
         always {
-            bat 'node src/scripts/reportSummary.js'
-            publishHTML(target: [
-                allowMissing: true,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'src/reports/html',
-                reportFiles: 'index.html',
-                reportName: 'Playwright Test Report'
-            ])
-            archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
+            ansiColor('xterm') {
+                bat 'node src/scripts/reportSummary.js'
+                publishHTML(target: [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'src/reports/html',
+                    reportFiles: 'index.html',
+                    reportName: 'Playwright Test Report'
+                ])
+                archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
+            }
         }
         failure {
             echo '❌ Las pruebas han fallado. Revisa los logs.'
