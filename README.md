@@ -39,3 +39,15 @@ Para ejecutar las pruebas, utiliza el siguiente comando:
 
 ```sh
 npx playwright test
+```
+
+## Generación de Reportes
+Después de ejecutar las pruebas, puedes generar un reporte en consola con el siguiente comando:
+
+```sh
+node src/scripts/reportSummary.js
+```
+
+El reporte HTMl se encuentra
+```sh
+src/reports/html
