@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test & node src/scripts/reportSummary.js"
+    "test": "npx playwright test & node src/scripts/reportSummary.js",
+    "test:debug": "npx playwright test --debug & node src/scripts/reportSummary.js"
   },
   "repository": {
     "type": "git",
