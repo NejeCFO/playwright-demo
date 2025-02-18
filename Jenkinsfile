@@ -25,7 +25,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        bat 'npx playwright test --reporter=line'
+                        bat 'npx playwright test'
                     }
                 }
             }
