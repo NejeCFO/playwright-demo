@@ -9,6 +9,7 @@ import { ProductPage } from '../pages/product.page';
 test.describe('Regresión de ASM - Alta de Servicios Móviles', () => {
     test('ASM - Portación DNI', async ({ page }) => {
         const homePage = new HomePage(page);
+        const productTab = new ProductPage(page);
 
         await test.step('Login en ASM', async () => {
             const loginPage = new LoginPage(page);
@@ -32,8 +33,7 @@ test.describe('Regresión de ASM - Alta de Servicios Móviles', () => {
             await expect(page).toHaveURL(/.*producto/);
         })
                         
-        await test.step('Seleccionar oferta comercial', async () => {
-            const productTab = new ProductPage(page);
+        await test.step('Seleccionar oferta comercial', async () => {            
             await productTab.selectTotalLines();
             await productTab.selectCampaing();
             await productTab.selectRate();
@@ -41,14 +41,17 @@ test.describe('Regresión de ASM - Alta de Servicios Móviles', () => {
             await productTab.selectProductSIM();
             await productTab.selectTypeSaleIMEI();
             await expect(homePage.loaderIsHidden).toBeTruthy();
-            await productTab.selectProductIMEI();
+            await productTab.selectProductIMEI();            
+        })
+
+        await test.step('Edito la grilla de oferta comercial', async () => {
             await productTab.editGrid(data);
             await expect(homePage.loaderIsHidden).toBeTruthy();
             await expect(homePage.buttonNextIsEnabled).toBeTruthy();
             await homePage.clickOnNextButton();
             await expect(page).toHaveURL(/.*facturacion/);
         })
-
+        
         await test.step('Cierro Sesión', async () => {
             await homePage.logout();
             await expect(page).toHaveURL(/.*login/);
