@@ -1,6 +1,6 @@
 pipeline {
     agent any
- 
+
     environment {
         CI = 'true'
     }
@@ -15,8 +15,15 @@ pipeline {
         stage('Setup Node.js & Dependencies') {
             steps {
                 ansiColor('xterm') {
-                    bat 'npm install'
-                    bat 'npx playwright install chromium'
+                    script {
+                        def installStatus = bat returnStatus: true, script: '''
+                            npm install
+                            npx playwright install chromium
+                        '''
+                        if (installStatus != 0) {
+                            error "❌ Error en la instalación de dependencias"
+                        }
+                    }
                 }
             }
         }
@@ -27,12 +34,12 @@ pipeline {
                     script {
                         def testStatus = bat returnStatus: true, script: 'npx playwright test'
                         if (testStatus != 0) {
-                            currentBuild.result = 'UNSTABLE'
+                            echo "⚠️ Algunas pruebas fallaron"
+                            currentBuild.result = 'UNSTABLE' // Permite ver que los tests fallaron, pero el pipeline no falla
+                        } else {
+                            echo "✅ Todas las pruebas pasaron exitosamente"
                         }
                     }
-                    // catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    //     bat 'npx playwright test'
-                    // }
                 }
             }
         }
@@ -41,26 +48,30 @@ pipeline {
     post {
         always {
             ansiColor('xterm') {
+                echo "📄 Generando el reporte de pruebas..."
                 bat 'node src/scripts/reportSummary.js'
+
                 publishHTML(target: [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: 'src/reports/html',
+                    reportDir: './src/reports',
                     reportFiles: 'index.html',
                     reportName: 'Playwright Test Report'
                 ])
-                archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
             }
         }
-        failure {
-            echo '❌ Las pruebas han fallado. Revisa los logs.'
-        }
+
         success {
-            echo '✅ Todas las pruebas pasaron exitosamente!'
+            echo "✅ El pipeline se ejecutó correctamente sin errores."
         }
+
         unstable {
-            echo '⚠️ Algunas pruebas han fallado. Revisa los logs.'
+            echo "⚠️ El pipeline terminó con tests fallidos, pero la compilación fue exitosa."
+        }
+
+        failure {
+            echo "❌ Hubo un problema crítico en la ejecución del pipeline."
         }
     }
 }
