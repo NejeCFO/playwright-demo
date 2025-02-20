@@ -59,6 +59,7 @@ pipeline {
                     reportFiles: 'index.html',
                     reportName: 'Playwright Test Report'
                 ])
+                archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
             }
         }
 
