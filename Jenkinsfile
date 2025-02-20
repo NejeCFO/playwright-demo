@@ -24,9 +24,15 @@ pipeline {
         stage('Run Playwright Tests') {
             steps {
                 ansiColor('xterm') {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        bat 'npx playwright test'
+                    script {
+                        def testStatus = bat returnStatus: true, script: 'npx playwright test'
+                        if (testStatus != 0) {
+                            currentBuild.result = 'UNSTABLE'
+                        }
                     }
+                    // catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    //     bat 'npx playwright test'
+                    // }
                 }
             }
         }
