@@ -50,7 +50,8 @@ pipeline {
             ansiColor('xterm') {
                 echo "📄 Generando el reporte de pruebas..."
                 bat 'node src/scripts/reportSummary.js'
-
+                
+                echo "📄 Publicando el reporte HTML..."
                 publishHTML(target: [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
@@ -59,7 +60,7 @@ pipeline {
                     reportFiles: 'index.html',
                     reportName: 'Playwright Test Report'
                 ])
-                archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
+                //archiveArtifacts artifacts: 'src/reports/html/index.html', fingerprint: true
             }
         }
 
