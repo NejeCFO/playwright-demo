@@ -7,7 +7,7 @@ import { ClientPage } from '../pages/client.page';
 import { ProductPage } from '../pages/product.page';
 
 test.describe('Regresión de ASM - Alta de Servicios Móviles', () => {
-    test('ASM - Portación DNI', async ({ page }) => {
+    test('ASM - Portación DNI @PACT-1234', async ({ page }) => {
         const homePage = new HomePage(page);
         const productTab = new ProductPage(page);
 
@@ -59,16 +59,16 @@ test.describe('Regresión de ASM - Alta de Servicios Móviles', () => {
     });
 
 
-    test('ASM - Test Case para fallo', async ({ page }) => {
-        const homePage = new HomePage(page);
+    // test('ASM - Test Case para fallo', async ({ page }) => {
+    //     const homePage = new HomePage(page);
 
-        await test.step('Login en ASM', async () => {
-            const loginPage = new LoginPage(page);
-            await loginPage.loginWithCredentials();
-            await expect(homePage.titleIsVisible).toBeTruthy();
-            await expect(page).toHaveURL(/.*fail/);
-        });  
-    })
+    //     await test.step('Login en ASM', async () => {
+    //         const loginPage = new LoginPage(page);
+    //         await loginPage.loginWithCredentials();
+    //         await expect(homePage.titleIsVisible).toBeTruthy();
+    //         await expect(page).toHaveURL(/.*fail/);
+    //     });  
+    // })
     
 })
 

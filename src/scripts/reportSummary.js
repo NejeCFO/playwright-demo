@@ -26,26 +26,27 @@ fs.readFile(reportPath, 'utf8', (err, data) => {
                 subSuite.specs.forEach(spec => {
                     totalCases++;
                     const result = spec.tests[0].results[0].status;
+                    const titleParts = spec.title.split(' @');
+                    const testCaseName = titleParts[0];
+                    const testCaseId = titleParts[1] || 'N/A';
                     if (result === 'passed') {
                         totalOk++;
+                        console.log(`JLR>\t${testCaseId}\t${testCaseName} - OK\t\t\t1\t\t0`);
                     } else {
                         totalFailed++;
+                        console.log(`JLR>\t${testCaseId}\t${testCaseName} - NOT OK\t\t\t0\t\t1`);
                     }
-                    console.log(`Test Case: ${spec.title} - Resultado: ${result}`);
                 });
             });
         });
     };
 
     // Imprimir la tabla
-    console.log('----------------------------------------');
-    console.log('Resumen de Casos de Prueba:');
+    //console.log('----------------------------------------');
+    console.log('JLR>\tID TSC/TC\t\tNOMBRE TSC/TC\t\t\t\t\tPASS\t\tFAIL');
     printTable(report.suites);
 
     // Imprimir el resumen
-    console.log('\nResumen:');
-    console.log(`Total de casos: ${totalCases}`);
-    console.log(`Total de casos OK: ${totalOk}`);
-    console.log(`Total de casos fallados: ${totalFailed}`);
-    console.log('----------------------------------------');
+    console.log('JLR>\tResumen_Regresion\tTC PASADOS:' + totalOk + '\t\tTC FALLADOS:' + totalFailed + '\t\tTC TOTALES:' + totalCases);
+    //console.log('----------------------------------------');
 });
