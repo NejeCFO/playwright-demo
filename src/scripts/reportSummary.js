@@ -43,7 +43,7 @@ fs.readFile(reportPath, 'utf8', (err, data) => {
 
     // Imprimir la tabla
     //console.log('----------------------------------------');
-    console.log('JLR>\tID TSC/TC\t\tNOMBRE TSC/TC\t\t\t\t\tPASS\t\tFAIL');
+    console.log('JLR>\tID TSC/TC\t\tNOMBRE TSC/TC\t\t\tPASS\t\tFAIL');
     printTable(report.suites);
 
     // Imprimir el resumen
